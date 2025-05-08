@@ -18,6 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.unitconverter.ui.theme.UnitConverterTheme
 import kotlin.math.roundToInt
 
@@ -55,6 +60,12 @@ fun UnitConverter() {
     val conversionFactor = remember { mutableStateOf(1.00) }
     val oConversionFactor = remember { mutableStateOf(1.00) }
 
+    val customTextStyle = TextStyle(
+            fontFamily = FontFamily.Serif,
+            fontSize = 32.sp,
+            color = Color.Blue
+    )
+
     fun convertUnits(){
         // ?: - elvis operator (if input is double use double else use 0.0)
         val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
@@ -72,6 +83,7 @@ fun UnitConverter() {
         Text(
             "Unit Converter",
             //modifier = Modifier.padding(16.dp)
+            style = customTextStyle
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -187,7 +199,8 @@ fun UnitConverter() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text("Result: $outputValue ")
+        Text("Result: $outputValue",
+            style = MaterialTheme.typography.headlineMedium)
 
     }
 }
